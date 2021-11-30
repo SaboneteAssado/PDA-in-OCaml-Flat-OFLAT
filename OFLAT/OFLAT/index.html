@@ -1,0 +1,166 @@
+<!--
+ * OFLAT/index.html
+ *
+ * This file is part of the OFLAT app
+ *
+ * LEAFS project (partially supported by the OCaml Software Foundation) [2020/21]
+ * FACTOR project (partially supported by the Tezos Foundation) [2019/20]
+ *
+ * NOVA LINCS - NOVA Laboratory for Computer Science and Informatics
+ * Dept. de Informatica, FCT, Universidade Nova de Lisboa.
+ *
+ * This software is distributed under the terms of the GPLv3 license.
+ * See the included LICENSE file for details.
+ *
+ *  Written by Rita Macedo
+ *-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OFLAT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1" charset="utf-8">
+    <script src="https://unpkg.com/lodash"></script>
+    <script src="https://unpkg.com/cytoscape"></script>
+    <script src="https://unpkg.com/cytoscape-cxtmenu"></script>
+    <script src="https://unpkg.com/cytoscape-context-menus"></script>
+    <script src="https://unpkg.com/cytoscape-edgehandles"></script>
+    <script src="https://unpkg.com/dagre/dist/dagre.js"></script>
+    <script src="https://unpkg.com/cytoscape-dagre"></script>
+    <script src="OFLAT.js"></script>
+    <script src="GraphLibrary.js"></script>
+    <link rel="stylesheet" href="Formatting.css">
+  </head>
+  <body>
+    <script>
+      function myFunction() {
+        var x = document.getElementById("selectConversion");
+        var y = x.selectedIndex;
+        jscode.selectConversions (y);
+        x.selectedIndex = 0;
+      }
+
+      function blah() {
+        var x = document.getElementById("selectLang");
+        var y = x.selectedIndex;
+        jscode.selectLang (y);
+        x.selectedIndex = 0;
+      }
+
+      var openFile = function(event) {
+        var input = event.target;
+
+        var reader = new FileReader();
+        reader.onload = function(){
+          var text = reader.result;
+          jscode.readFromFile (text);
+
+        };
+        reader.readAsText(input.files[0]);
+      };
+      </script>
+
+    <div class="sidenav">
+      <div>
+        <h2 id="title">OFLAT</h2>
+        <p id="version">Version 1.3</p>
+      </div>
+      <div class="tooltip" onmouseover="jscode.tooltipRegex ()">
+        <button id="define" onclick="jscode.startRegex ()"></button> 
+        <div id = "tooltipDefine" class = "tooltiptext"></div>
+      </div>
+      <div class="tooltip" onmouseover="jscode.tooltipStartGraph ()">
+        <button id="startGraph" onclick="jscode.startGraph ()"></button> 
+        <div id = "tooltipStartGraph" class = "tooltiptext"></div>
+      </div>
+      <div class="tooltip" onmouseover="jscode.tooltipFitGraph ()">
+        <button id="fitGraph" onclick="jscode.fitGraph ()" disabled></button> 
+        <div id = "tooltipFitGraph" class = "tooltiptext"></div>
+      </div>
+      <hr>
+      <div class="tooltip" onmouseover="jscode.tooltipGenerate ()">
+        <button id="generate" onclick="jscode.generateWords ()" disabled></button> 
+        <div id = "tooltipGenerate" class = "tooltiptext"></div>
+      </div>
+      <div class="tooltip" onmouseover="jscode.tooltipComplete ()">
+        <button id="testing" onclick="jscode.testComplete ()" disabled></button> 
+        <div id = "tooltipComplete" class = "tooltiptext"></div>
+      </div>
+      <div>
+        <p id="step"></p>
+      </div>
+      <div class="tooltip" onmouseover="jscode.tooltipStep ()">
+        <button id="backwards" onclick="jscode.backwards ()" disabled>◀︎</button> 
+        <button id="start" onclick="jscode.stepbystep ()" disabled></button> 
+        <button id="forward" onclick="jscode.forward ()" disabled>▶︎</button> 
+        <div id = "tooltipStep" class = "tooltiptext"></div>
+      </div>
+      <div class="tooltip" onmouseover="jscode.tooltipClear ()">
+        <button id="clearAuto" onclick="jscode.cleanAuto ()" disabled></button> 
+        <div id = "tooltipClear" class = "tooltiptext"></div>
+      </div>
+      <hr>
+      <div class="tooltip" onmouseover="jscode.tooltipConvert ()">
+        <select name="selectConversion" id="selectConversion" class="selectBoxes" onchange="myFunction()">
+          <option id="selectConv" value="selectConv"></option>
+          <option id="selectRegex" value="selectRegex" disabled></option>
+          <option id="selectAutomaton" value="selectAutomaton" disabled></option>
+        </select>
+        <div id = "tooltipConvert" class = "tooltiptext"></div>
+      </div>
+      <hr>
+      <div id="importTitle"></div>
+      <div id="fromFilesystem" class="tooltip" onmouseover="jscode.tooltipFile ()">
+        <input type='file' id= "file_input" onchange='openFile(event)'>
+        <div id = "tooltipFile" class = "tooltiptext"></div>
+      </div>
+      <div id="server"></div>
+      <div id="examplesServer"></div>
+      <hr>
+      <div class="tooltip4" onmouseover="jscode.tooltipAbout ()">
+        <button id="about" onclick="jscode.about ()"></button> 
+        <div id = "tooltipAbout" class = "tooltiptext4"></div>
+      </div>
+      <div class="tooltip4" onmouseover="jscode.tooltipFeedback ()">
+        <button id="feedback" onclick="jscode.feedback ()"></button> 
+        <div id = "tooltipFeedback" class = "tooltiptext4"></div>
+      </div>
+      <div class="tooltip4" onmouseover="jscode.tooltipLang ()">
+        <select name="selectLang" id="selectLang" class="selectBoxes" onchange="blah()">
+          <option value="selectedL" id="selectedL" selected></option>
+          <option value="selectPT" id="selectPT"></option>
+          <option value="selectEN" id="selectEN"></option>
+        </select>
+        <div id = "tooltipLang" class = "tooltiptext4"></div>
+      </div>
+  </div>
+  <div class ="main">
+    <div id="mainBar">
+      <h1 id="mainTitle"></h1>
+    </div>
+    <div class ="test">
+      <div id="Box1">
+        <div id="buttonBox"></div>
+        <div id="regExp"></div>
+        <div id="cy"></div>
+        <div id="infoBox"></div>
+      </div>
+      <div id="Box2">
+        <div id="buttonBox1"></div>
+        <div id="textBox"></div>
+        <div id="cy2"></div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <span id="developed"></span>
+    <a id="footerButton0" href="https://nova-lincs.di.fct.unl.pt/">NOVA-LINCS</a>
+    <span id="project"></span>
+    <a id="footerButton0" href="https://release.di.ubi.pt/factor/index.html">Factor</a>
+    <span id="financing"></span>
+    <a id="footerButton0" href="https://tezos.com/">Tezos</a>
+    <span id="and"></span>
+    <a id="footerButton0" href="https://www.inria.fr/en">INRIA Foundation</a></footer>
+  </body>
+</html>

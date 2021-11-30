@@ -1,0 +1,812 @@
+/*
+ * OFLAT/Formatting.js
+ *
+ * This file is part of the OFLAT app
+ *
+ * LEAFS project (partially supported by the OCaml Software Foundation) [2020/21]
+ * FACTOR project (partially supported by the Tezos Foundation) [2019/20]
+ *
+ * NOVA LINCS - NOVA Laboratory for Computer Science and Informatics
+ * Dept. de Informatica, FCT, Universidade Nova de Lisboa.
+ *
+ * This software is distributed under the terms of the GPLv3 license.
+ * See the included LICENSE file for details.
+ *
+ *  Written by Rita Macedo
+ */
+ 
+ 
+ body {
+    font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
+    font-size: 14px;
+    height: 100%
+  }
+
+.cxtmenu {
+  font-size: 12px;
+  width: 50px;
+}
+
+/* you can set the disabled style how you like on the text/icon */
+.cxtmenu-disabled {
+  opacity: 0.333;
+}
+
+#mainTitle {
+  width: 100%;
+  color: #000030;
+  height: 40px;
+  margin-top: 15px; 
+}
+
+#under  {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  width: 198px;
+  text-decoration: underline;
+}
+
+#underBig  {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  width: 198px;
+  text-decoration: underline;
+}
+
+#buttonDiv {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+#regExp {
+  text-align: center;
+  /* padding-top: 10px; */
+  height: 5vh;
+}
+
+.title {
+  color: white;
+  font-size: 19px;
+  width: 198px;
+}
+
+  #Box1 {
+    width: 98%;
+    height: 80vh;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid black;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow-x: hidden;
+  }
+
+  #buttonBox {
+    height: 20vh;
+  }
+  
+  
+#cy {
+    height: 50vh;
+  }
+  
+  #Box2 {
+    width: 0%;
+    height: 80vh;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid black;
+    overflow: scroll;
+  }
+
+  #cy2 {
+    height: inherit;
+  }
+
+  #complete {
+    width: 0%;
+    height: 400px;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid black;
+    font-size: 12px;
+    overflow: scroll;
+    margin-top: 0px;
+  }
+
+  .test {
+    left: inherit;
+    /*width: 100%;*/
+  }
+
+  #blah {
+    margin-bottom: 30px;
+  }
+
+  #leftBox {
+    width: 150px;
+    float: left;
+}
+
+#rightBox {
+    width: 150px;
+    float: left;
+}
+  
+  h1 {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  h2 {
+    font-size: 30px;
+    margin: 5px;
+  }
+
+  button {
+    border-style: solid;
+    border-radius: 5px;
+    padding-left: 10px;
+    border-color: lightgray;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: #b0bec5;
+    opacity: 0.3px;
+    margin: 5px; 
+    font-size: 11px;
+    /* width: 170px; */
+  }
+
+#inputBox {
+  top: 100px; 
+  left: 10px; 
+  width: 400px;
+  border-style: solid;
+  border-radius: 5px;
+  padding-left: 10px;
+  border-color: dimgray;
+  overflow: hidden;
+  }
+
+* {
+  font-family: sans-serif;
+}
+div.button {
+  width: 400px;
+  height: 30px;
+  padding: 0;
+  cursor: pointer;
+}
+
+div.content {
+  width: 200px;
+  padding: 5px;
+  margin-top: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+#test{
+  float: left;
+}
+
+#invisible {
+  border-style: hidden;
+  background-color: unset;
+  text-decoration: underline;
+  width: 80px;
+}
+
+#separate {
+  padding-bottom: 10px;
+}
+
+#box {
+  width:170px;
+  margin-left: 5px;
+}
+
+#space {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+#leftBox1 {
+  width: 500px;
+  float: left;
+}
+#rightBox1 {
+  width: 500px;
+  float: left;
+}
+
+#answerBox {
+  width: 500px;
+  border: none;
+}
+
+/* Menu formatting */
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #000030;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.text {
+  color:white;
+}
+
+.Box1 {
+  align-content: center;  
+  display: grid;
+  width: 180px;
+}
+
+.inputBox {
+  width: inherit;
+} 
+
+.smallTitle {
+  color: white;
+}
+
+#file_input {
+  color: white;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-size: 11px;
+}
+
+#examplesServer::-webkit-scrollbar {
+  display: none;
+}
+
+#box1::-webkit-scrollbar {
+  display: none;
+}
+
+#infoBox {
+  width: 99%;
+  display: inline-block;
+  vertical-align: top;
+  /*border: 1px solid black;*/
+  height: 10vh;
+  overflow: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  overflow-x: hidden;
+  padding-left: 10px;
+}
+
+#automataButtons {
+  padding-left: 5%;
+}
+
+#textarea {
+  width: 98%;
+  border: 0px;
+  padding-top: 10px;
+  overflow: scroll;
+  height: 300px;
+  display: block; 
+}
+
+#isdeterministic, #isminimal, #areuseful, #numbertransitions, #numberstates, #wordTitle, #errorsInfo{
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+#titleInfo {
+  font-size: 20px;
+  padding-top: 5px;
+}
+
+#info {
+  font-size: 22px;
+}
+
+.footer {
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   padding: 5px;
+  background-color: #000030;
+  text-align: center;
+  font-size: .85rem;
+  line-height: 1.75;
+  color: white;
+}
+
+#footerButton0, #footerButton1, #footerButton2 {
+  border-style: none;
+    border-radius: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    color: white;
+    display: inline-block;
+    text-decoration: underline;
+}
+
+#title {
+  color: white;
+  text-align: center;
+}
+
+#version {
+  font-size: 12px;
+  color: white;
+  text-align: center;
+}
+
+hr{
+  color: white;
+  margin-bottom: 10px;
+}
+
+#exampleButton {
+  border-style: none;
+  background-color: transparent;
+  color:white;
+  text-decoration: underline;
+  width: 85px;
+}
+
+#changeDirection, #formatting  {
+  float: right;
+}
+
+#input {
+  margin-bottom: 10px;
+  margin-right: 15px;
+  margin-left: 5px; 
+}
+
+#error {
+  color: red;
+}
+
+#right {
+  color: green;
+}
+
+#nothing {
+  font-size: 15px;
+  padding: 20px;
+}
+
+#prob, #accept, #wrong {
+  font-size: 17px;
+}
+
+#enum {
+  text-align: center;
+}
+
+#convert {
+  width: 47%;
+  margin-bottom: 5px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+#addTransition, #define, #generate, #fromFilesystem, #box, #server , #testing, #startGraph, #fitGraph, #clearAuto {
+  width: 97%;
+  margin-left: 3px;
+}
+
+#backwards, #start, #forward, #clean, #deterministic, #minimize, #productive, #accessible, #useful {
+  width: 30%;
+  margin-left: 3px;
+  margin-right: 0px;
+}
+
+#infoAutomata, #treeResult, #treeGoodDerivations, #treeBadDerivations {
+  font-size: 14px;
+}
+
+#treeResult, #resultBox, #treeGoodDerivations, #treeBadDerivations {
+  text-align: center;
+}
+
+#resultBox {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.selectBoxes {
+  border-style: solid;
+    border-radius: 5px;
+    padding-left: 10px;
+    border-color: lightgray;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: #b0bec5;
+    opacity: 0.3px;
+    margin: 5px;
+    width: 97%;
+    margin-left: 3px;
+}
+
+/*style the arrow inside the select element:*/
+.selectBoxes:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.selectBoxes.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.selectBoxes {
+  color: #ffffff;
+  padding: 3px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: #b0bec5;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#step {
+  color:white;
+  font-size: 11px;
+}
+
+#closeLeft, #closeRight {
+  width: 20px;
+  padding: 0px;
+  text-align: center;
+}
+
+#aboutTitle {
+  font-size: 30px;
+}
+
+#aboutSubtitle, #aboutSubtitle2 {
+  font-size: 20px;
+}
+
+#aboutText, #aboutText17, #aboutText5, #aboutText6, #aboutText7, #aboutText8, #aboutText9, #aboutText10, #aboutText11, #aboutText12, #aboutText13, #aboutText14, #aboutText15  {
+  font-size: 15px;
+}
+
+#aboutBox {
+  overflow: scroll;
+}
+
+#feedbackTitle {
+  font-size: 30px;
+}
+
+#feedbackText, #feedbackText1, #feedbackThankYou {
+  font-size: 15px;
+}
+
+#feedbackText1 a:link{
+  color: black;
+}
+
+#feedbackBox {
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+#examplesServer{
+  width: 200px;
+  height: 80px;
+  overflow: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+#aboutText a:link{
+  color: black;
+}
+
+#selectConversion, #selectNode, #selectTrans, #selectLang {
+  color: black;
+  text-align: center;
+  font-size: 11px;
+}
+
+#inputTitle, #importTitle {
+  color: white;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+#about, #feedback, #selectLang {
+  width: 97%
+}
+
+#box {
+  height: 15px;
+}
+
+#server {
+  border-style: none;
+  padding-left: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: transparent;
+  margin: 5px;
+  width: 170px;
+  color: white;
+  text-align: left;
+  font-size: 11px;
+}
+
+#inside, #outside {
+  font-size: 15px;
+  margin-left: 15px;
+}
+
+#treeButtons {
+display: flex; 
+justify-content: center;
+}
+
+#min, #prod {
+  padding-left: 7%;
+}
+
+/* Tooltip Menu */
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #b0bec5;
+  color: #000030;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  /* top: 150%; */
+  left: 50%;
+  margin-left: -60px;
+  font-size: 12px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #b0bec5 transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/* Tooltip Direita */
+
+.tooltip1 {
+  position: relative;
+}
+
+.tooltip1 .tooltiptext1 {
+  visibility: hidden;
+  width: 120px;
+  background-color: #b0bec5;
+  color: #000030;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 110%;
+  font-size: 12px;
+}
+
+.tooltip1 .tooltiptext1::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #b0bec5 transparent transparent;
+}
+.tooltip1:hover .tooltiptext1 {
+  visibility: visible;
+}
+
+/* Tooltip Baixo */
+
+.tooltip3 {
+  position: relative;
+}
+
+.tooltip3 .tooltiptext3 {
+  visibility: hidden;
+  width: 120px;
+  background-color: #b0bec5;
+  color: #000030;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip3 .tooltiptext3::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #b0bec5 transparent;
+}
+
+.tooltip3:hover .tooltiptext3 {
+  visibility: visible;
+}
+
+/* Tooltip Esquerda */
+.tooltip2 {
+  position: relative;
+}
+
+.tooltip2 .tooltiptext2 {
+  visibility: hidden;
+  width: 120px;
+  background-color: #b0bec5;
+  color: #000030;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  right: 110%;
+}
+
+.tooltip2 .tooltiptext2::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #b0bec5;
+}
+.tooltip2:hover .tooltiptext2 {
+  visibility: visible;
+}
+
+.tooltip4 {
+  position: relative;
+}
+
+.tooltip4 .tooltiptext4 {
+  visibility: hidden;
+  width: 120px;
+  background-color: #b0bec5;
+  color: #000030;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+  font-size: 12px;
+}
+
+.tooltip4 .tooltiptext4::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #b0bec5 transparent transparent transparent;
+}
+
+.tooltip4:hover .tooltiptext4 {
+  visibility: visible;
+}
