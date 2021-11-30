@@ -1,2 +1,2 @@
 # PDA-in-OCaml-Flat-OFLAT
-A pushdown Automaton implementation for OCaml-Flat and OFLAT
+A pushdown automaton implementation for OCaml-Flat and OFLAT
