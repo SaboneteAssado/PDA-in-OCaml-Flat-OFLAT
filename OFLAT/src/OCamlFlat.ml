@@ -1531,11 +1531,95 @@ struct
 			outside : ["or","oo","o","w","r","c","orw","owrrww","corwc"]
 		} |}
 
-
-
+	let pda_clean_test = {|
+		{
+			kind : "pushdown automaton",
+			description : "0n1n deterministic, n>0, very dirty",
+			name : "dpda-0n1n-dirty",
+			inputAlphabet : ["0", "1","2"],
+			stackAlphabet : ["A", "Z","X"],
+			states : ["START", "A", "B", "SUCCESS","TOY1","TOY2","TOY3", "TOY4", "TOY5", "TOY6"],
+			initialState : "START",
+			initialStackSymbol : "Z",
+			transitions : [
+					["START","Z","0", "START", "AZ"],
+					["START","A","0", "START", "AA"],
+					["START","A","1", "A", ""],
+					["A","A","1", "A", ""],
+					
+					["A","Z","~", "B", "Z"],
+					["B","Z","~", "TOY5", "Z"],
+					["B","Z","~", "B", "Z"],
+					["TOY6","Z","~", "B", "Z"],
+					
+					["A","A","~", "TOY1", "A"],
+					["TOY2","A","~", "A", "A"],
+					["TOY2","A","~", "TOY2", "A"],
+					["TOY3", "Z", "~", "SUCCESS", "Z"],
+					["TOY4", "Z", "~", "START", "Z"],
+					
+					["B","Z","~", "SUCCESS", "Z"]
+				],
+			acceptStates : ["SUCCESS"],
+			criteria : "true"
+		}
+	|}
+	
+	let pda_limit = {|
+		{
+			kind : "pushdown automaton",
+			description : "0n1n deterministic, n>0",
+			name : "dpda-0n1n",
+			inputAlphabet : ["0", "1"],
+			stackAlphabet : ["A", "Z"],
+			states : ["START", "SUCCESS"],
+			initialState : "START",
+			initialStackSymbol : "Z",
+			transitions : [
+					["START","Z","0", "START", "AZ"],
+					["START","A","0", "START", "AA"],
+					["START","A","~", "START", "A"]
+				],
+			acceptStates : ["SUCCESS"],
+			criteria : "true"
+		}
+	|}
+	
+	let pda_ww = {|
+		{
+			kind : "pushdown automaton",
+			description : "ww-1 | w pertence {a,b}",
+			name : "ndpda-ww-1",
+			inputAlphabet : ["a", "b"],
+			stackAlphabet : ["a", "b", "z"],
+			states : ["i", "p", "q", "t"],
+			initialState : "i",
+			initialStackSymbol : "z",
+			transitions : [
+					["i","z","a", "p", "az"],
+					["i","z","b", "p", "bz"],
+					["p","a","a", "p", "aa"],
+					["p","a","a", "q", ""],
+					["p","a","b", "p", "ba"],
+					["p","b","a", "p", "ab"],
+					["p","b","b", "p", "bb"],
+					["p","b","b", "q", ""],
+					["q","a","a", "q", ""],
+					["q","b","b", "q", ""],
+					["q","z","~", "t", "z"]
+				],
+			acceptStates : ["i", "t"],
+			criteria : "true"
+		}
+	|}
+	
 	(* Examples table *)
 
 	let oflatExamplesTable = [
+		("pda_clean_test", pda_clean_test);
+		("pda_limit", pda_limit);
+		("pda_ww-1", pda_ww);
+	
 		("dfa_1", dfa_1);
 		("dfa_2", dfa_2);
 		("fa_abc", fa_abc);
@@ -1554,6 +1638,8 @@ struct
 		("exer_ab", exer_ab);
 		("exer_re2fa", exer_re2fa);
 		("exer_readwrite", exer_readwrite)
+		
+		
 	]
 
 	let examples =

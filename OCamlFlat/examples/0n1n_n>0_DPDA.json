@@ -1,0 +1,20 @@
+{
+	kind : "pushdown automaton",
+	description : "0n1n deterministic, n>0",
+	name : "dpda-0n1n",
+	inputAlphabet : ["0", "1"],
+	stackAlphabet : ["A", "Z"],
+	states : ["START", "A", "SUCCESS"],
+	initialState : "START",
+	initialStackSymbol : "Z",
+	transitions : [
+			["A","A","1", "A", ""],
+			["A","Z","~", "SUCCESS", "Z"],
+			["START","Z","0", "START", "AZ"],
+			["START","A","0", "START", "AA"],
+			["START","A","1", "A", ""]
+		],
+	acceptStates : ["SUCCESS"],
+	criteria : "true"
+}
+

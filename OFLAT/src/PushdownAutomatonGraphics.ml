@@ -429,25 +429,25 @@ module rec PushdownAutomatonGraphics : PushdownAutomatonGraphicsSig =
 					else
 						false
 				
-				(* devolve uma representação do autómato sem os estados inúteis *)
+				(* returns a clean representation of the automaton *)
 				method cleanUselessStates: PushdownAutomatonGraphics.model =
 					let clean = super#clean in
 					let rep = clean#representation in 
 						new PushdownAutomatonGraphics.model (Representation rep)
 					
-				(* pinta os estados produtivos do autómato *)
+				(* paints the automaton's productive states*)
 				method paintProductive: unit =
 					resetColor self#representation.states;
 					let l = Set.toList self#getProductiveStates in
 					iterateList paint l productiveColor
 				
-				(* pinta os estados úteis do autómato *)
+				(* paints the automaton's useful states *)
 				method paintUseful: unit =
 					resetColor self#representation.states;
 					let l = Set.toList self#getUsefulStates in
 					iterateList paint l usefulColor
 				
-				(* pinta os estados a que se consegue chegar a partir do estado inicial *)
+				(* paints the automaton's states that are reachable  *)
 				method paintReachable =
 					resetColor self#representation.states;
 					let l = Set.toList self#getReachableStates in
@@ -521,6 +521,7 @@ module rec PushdownAutomatonGraphics : PushdownAutomatonGraphicsSig =
 						let nextSteps = Set.flatMap (fun x -> self#getNextConfs x trans) confs in
 						
 						let interConfs = Set.inter confs nextSteps in
+						(* not explicit enough, lets same state with word to consume unexplored *)
 						if Set.size interConfs = Set.size nextSteps then (
 							let exploredStates = List.map (fun (a,_,_) -> a ) (Set.toList confs) in
 							List.iter ( fun x -> paint x wrongFinalState) exploredStates;

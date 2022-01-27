@@ -477,7 +477,8 @@ end
 
 	(* TODO isto e o botao de fechar *)
     Listeners.changeListener := 
-      fun () -> if (StateVariables.getCy2Type() = StateVariables.getAutomatonType()) then
+      fun () -> (* Finite automaton case *)
+				if (StateVariables.getCy2Type() = StateVariables.getAutomatonType()) then
                     (HtmlPageClient.oneBox();
                     HtmlPageClient.clearBox1();
                     StateVariables.changeCy1ToAutomaton ();
@@ -492,7 +493,26 @@ end
                     HtmlPageClient.clearBox2();
                     let rexp = Dom_html.getElementById "regExp" in
                       rexp##.innerHTML := Js.string "";
-                    StateVariables.cleanCy2Type ()) 
+                    StateVariables.cleanCy2Type ())
+                (* its PDA *)
+                else if (StateVariables.getCy2Type() = StateVariables.getPDAType()) then (
+					HtmlPageClient.oneBox();
+                    HtmlPageClient.clearBox1();
+                    ignore(StateVariables.changeCy1ToPDA);
+                    HtmlPageClient.defineMainTitle (StateVariables.getCy1Type());
+                    HtmlPageClient.disableButtons (StateVariables.getCy1Type());
+                    Graphics.destroyGraph();
+                    ignore(HtmlPageClient.putCyPDAButtons);
+                    Graphics.startGraph();
+                    StateVariables.changePDA (StateVariables.returnPDA1());
+                    ignore((StateVariables.returnPDA())#startPDA "cy");
+                    !Listeners.defineInformationBoxListener();
+                    HtmlPageClient.clearBox2();
+                    let rexp = Dom_html.getElementById "regExp" in
+						rexp##.innerHTML := Js.string "";
+                    StateVariables.cleanCy2Type ();
+                    Graphics.fit()
+                )
                 else 
                   (HtmlPageClient.oneBox ();
                   let cy = Dom_html.getElementById "buttonBox" in

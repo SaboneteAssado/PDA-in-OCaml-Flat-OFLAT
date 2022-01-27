@@ -1,0 +1,22 @@
+{
+	kind : "pushdown automaton",
+	description : "a^n,b^n deterministic, n>1",
+	name : "dpda-a^n,b^n",
+	inputAlphabet : ["a", "b"],
+	stackAlphabet : ["a", "z"],
+	states : ["p", "q","1","2"],
+	initialState : "p",
+	initialStackSymbol : "z",
+	transitions : [
+			["p","z","a", "p", "az"],
+			["p","a","a", "p", "aa"],
+			["p","a","b", "q", ""],
+			["q","a","b", "q", ""],
+			["q","z","~", "q", ""],
+			["p","z","~", "1", "z"],
+			["q","a","~", "2", "a"]
+		],
+	acceptStates : [],
+	criteria : "false"
+}
+
