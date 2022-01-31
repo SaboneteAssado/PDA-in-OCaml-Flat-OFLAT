@@ -1,3 +1,0 @@
-# OCamlFlat
-
-The OCamlFlat library
