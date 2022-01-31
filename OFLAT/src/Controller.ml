@@ -475,7 +475,6 @@ end
 					( let enu = new Exercise.exercise (JSon j) in 
 					defineEnum enu));;
 
-	(* TODO isto e o botao de fechar *)
     Listeners.changeListener := 
       fun () -> (* Finite automaton case *)
 				if (StateVariables.getCy2Type() = StateVariables.getAutomatonType()) then

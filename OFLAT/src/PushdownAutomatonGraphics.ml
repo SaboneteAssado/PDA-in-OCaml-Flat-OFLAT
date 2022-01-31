@@ -521,7 +521,7 @@ module rec PushdownAutomatonGraphics : PushdownAutomatonGraphicsSig =
 						let nextSteps = Set.flatMap (fun x -> self#getNextConfs x trans) confs in
 						
 						let interConfs = Set.inter confs nextSteps in
-						(* not explicit enough, lets same state with word to consume unexplored *)
+						
 						if Set.size interConfs = Set.size nextSteps then (
 							let exploredStates = List.map (fun (a,_,_) -> a ) (Set.toList confs) in
 							List.iter ( fun x -> paint x wrongFinalState) exploredStates;

@@ -1565,27 +1565,67 @@ struct
 		}
 	|}
 	
-	let pda_limit = {|
-		{
-			kind : "pushdown automaton",
-			description : "0n1n deterministic, n>0",
-			name : "dpda-0n1n",
-			inputAlphabet : ["0", "1"],
-			stackAlphabet : ["A", "Z"],
-			states : ["START", "SUCCESS"],
-			initialState : "START",
-			initialStackSymbol : "Z",
-			transitions : [
-					["START","Z","0", "START", "AZ"],
-					["START","A","0", "START", "AA"],
-					["START","A","~", "START", "A"]
-				],
+	let pda_loop = {| {
+		kind : "pushdown automaton",
+		description : "0n1n deterministic, n>0, loop to test cycle",
+		name : "dpda-0n1n",
+		inputAlphabet : ["0", "1"],
+		stackAlphabet : ["A", "Z"],
+		states : ["START", "A", "SUCCESS"],
+		initialState : "START",
+		initialStackSymbol : "Z",
+		transitions : [
+				["START","Z","~", "START", "AZ"],
+				["START","A","~", "START", "AA"]
+			],
+		acceptStates : ["SUCCESS"],
+		criteria : "true"
+	} |}
+	
+	let pda_emptyStackDet = {| {
+		kind : "pushdown automaton",
+		description : "a^n,b^n deterministic, n>1",
+		name : "dpda-a^n,b^n",
+		inputAlphabet : ["a", "b"],
+		stackAlphabet : ["a", "z"],
+		states : ["p", "q","1","2"],
+		initialState : "p",
+		initialStackSymbol : "z",
+		transitions : [
+			["p","z","a", "p", "az"],
+			["p","a","a", "p", "aa"],
+			["p","a","b", "q", ""],
+			["q","a","b", "q", ""],
+			["q","z","~", "q", ""],
+			
+			["p","z","~", "1", "z"],
+			["q","a","~", "2", "a"]
+		],
+	acceptStates : [],
+	criteria : "false"
+	} |}
+	
+	let pda_acceptStatesDet = {| {
+		kind : "pushdown automaton",
+		description : "0n1n deterministic, n>0",
+		name : "dpda-0n1n",
+		inputAlphabet : ["0", "1"],
+		stackAlphabet : ["A", "Z"],
+		states : ["START", "A", "SUCCESS"],
+		initialState : "START",
+		initialStackSymbol : "Z",
+		transitions : [
+				["START","Z","0", "START", "AZ"],
+				["START","A","0", "START", "AA"],
+				["START","A","1", "A", ""],
+				["A","A","1", "A", ""],
+				["A","Z","~", "SUCCESS", "Z"]
+			],
 			acceptStates : ["SUCCESS"],
 			criteria : "true"
-		}
-	|}
+		} |}
 	
-	let pda_ww = {|
+	let pda_ww1 = {|
 		{
 			kind : "pushdown automaton",
 			description : "ww-1 | w pertence {a,b}",
@@ -1616,9 +1656,11 @@ struct
 	(* Examples table *)
 
 	let oflatExamplesTable = [
-		("pda_clean_test", pda_clean_test);
-		("pda_limit", pda_limit);
-		("pda_ww-1", pda_ww);
+		("0n1n_n>0_ES", pda_emptyStackDet);
+		("0n1n_n>0_AS", pda_acceptStatesDet);
+		("pda_clean", pda_clean_test);
+		("pda_cycle", pda_loop);
+		("pda_ww¹_NDet", pda_ww1);
 	
 		("dfa_1", dfa_1);
 		("dfa_2", dfa_2);
