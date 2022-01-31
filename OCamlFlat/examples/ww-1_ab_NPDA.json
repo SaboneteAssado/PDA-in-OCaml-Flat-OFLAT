@@ -1,0 +1,26 @@
+{
+	kind : "pushdown automaton",
+	description : "ww-1 | w pertence {a,b}",
+	name : "ndpda-ww-1",
+	inputAlphabet : ["a", "b"],
+	stackAlphabet : ["a", "b", "z"],
+	states : ["i", "p", "q", "t"],
+	initialState : "i",
+	initialStackSymbol : "z",
+	transitions : [
+			["i","z","a", "p", "az"],
+			["i","z","b", "p", "bz"],
+			["p","a","a", "p", "aa"],
+			["p","a","a", "q", ""],
+			["p","a","b", "p", "ba"],
+			["p","b","a", "p", "ab"],
+			["p","b","b", "p", "bb"],
+			["p","b","b", "q", ""],
+			["q","a","a", "q", ""],
+			["q","b","b", "q", ""],
+			["q","z","~", "t", "z"]
+		],
+	acceptStates : ["i", "t"],
+	criteria : "true"
+}
+
